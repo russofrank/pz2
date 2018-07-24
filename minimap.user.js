@@ -1,12 +1,12 @@
 // ==UserScript==
-// @name         Italy Pixelzone Minimap
+// @name         Italy Zone MiniMap
 // @namespace    http://tampermonkey.net/
-// @version      1.1
-// @description  Italy Pixelzone Minimap
-// @author       olegispe#2453 Edited by SrObsidian
+// @version      2.0
+// @description  Italy Zone MiniMap
+// @author       
 // @match        https://pixelzone.io/*
 // @match        http://pixelzone.io/*
-// @homepage     https://github.com/powergab76/ItalyZoneMinimap/
+// @homepage     https://github.com/powergab76/ItalyZoneMinimap
 // @updateURL    https://raw.githubusercontent.com/powergab76/ItalyZoneMinimap/blob/master/minimap.user.js
 // @downloadURL  https://raw.githubusercontent.com/powergab76/ItalyZoneMinimap/blob/master/minimap.user.js
 // @grant        none
@@ -40,7 +40,7 @@ MMMMMMMMMMMMMMNNNNNNNNNNNNNNNNNNNNNNNN         yNNNNNNNNN/        `---------NNNN
 MMMMMMMMMMMMMMNNNNNNNNNNNNNNNNNNNNNNNN         -:::::::::.    .....---------++++++++++MMMMMMMMMMMMMM
 MMMMMMMMMMMMMMNNNNNNNNNNNNNNNNNNNNNNNN                        ------------------------MMMMMMMMMMMMMM
 MMMMMMMMMMMMMMNNNNNNNNNNNNNNNNNNNNNNNN                        .....-------------------hhhhhhhhhNMMMM
-MMMMMMMMMMMMMMNNNNNNNNNNNNNNNNNNNNNNNN                            `----------------------------hMMMM --------------- DESCOMPILADO PARA RESPEITAR A DECISÃO DO DONO.
+MMMMMMMMMMMMMMNNNNNNNNNNNNNNNNNNNNNNNN                            `----------------------------hMMMM
 MMMMMMMMMMMMMMNNNNNNNNNNNNNNNNNNNNNNNN                            `----------------------------hMMMM
 MMMMMMMMMMMMMMNNNNNNNNNNNNNNNNNNNNNNNN                                          /NNNNNMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMNNNNNNNNNNNNNNNNNNNNNNNN                                          /NNNNNMMMMMMMMMMMMMM
@@ -82,10 +82,8 @@ Number.prototype.between = function(a, b) {
 window.baseTepmlateUrl = 'https://raw.githubusercontent.com/powergab76/ItalyZoneMinimap/master';
 
 window.addEventListener('load', function () {
-    //Regular Expression to get coordinates out of URL
-    re = /(.*)\/\?p=(\-?(?:\d*)),(\-?(?:\d*))/g;
     //Regular Expression to get coordinates from cursor
-    rec = /x\:(\d*) y\:(\d*)/g;
+    rec = /x\:(-?\d*) y\:(-?\d*)/g;
     gameWindow = document.getElementById("gameWindow");
     //DOM element of the displayed X, Y variables
     coorDOM = null;
@@ -115,17 +113,18 @@ window.addEventListener('load', function () {
 
     var div = document.createElement('div');
     div.setAttribute('class', 'post block bc2');
-    div.innerHTML = '<div id="minimapbg" style="position: absolute; right: 1em; bottom: 1em;">' +
-        '<div class="posy" id="posyt" style="background-size: 100%; background-image: url(https://cdn.pbrd.co/images/HqxSkRb.png); color: rgb(250, 250, 250); text-align: center; line-height: 42px; vertical-align: middle; width: auto; height: auto; border-radius: 21px; padding: 6px;">' +
+    div.innerHTML = '<div id="minimapbg" style="position: absolute; right: 1em; bottom: 1em; z-index: 2;">' +
+        '<div class="posy" id="posyt" style="background-size: 100%; background-image: url(https://cdn.pbrd.co/images/HqxSkRb.png); color: rgb(255, 255, 255); text-align: center; line-height: 42px; vertical-align: middle; width: auto; height: auto; border-radius: 21px; padding: 6px;">' +
         '<div id="minimap-text" style="display: none;"></div>' +
         '<div id="minimap-box" style="position: relative;width:420px;height:300px">' +
         '<canvas id="minimap" style="width: 100%; height: 100%;z-index:1;position:absolute;top:0;left:0;"></canvas>' +
         '<canvas id="minimap-board" style="width: 100%; height: 100%;z-index:2;position:absolute;top:0;left:0;"></canvas>' +
         '<canvas id="minimap-cursor" style="width: 100%; height: 100%;z-index:3;position:absolute;top:0;left:0;"></canvas>' +
         '</div><div id="minimap-config" style="line-height:20px;">' +
-        '<span id="hide-map" style="cursor:pointer;">Oscurare' +
-        '</span> | <span id="follow-mouse" style="cursor:pointer;"Seguire il mouse' +
-        '</span> | Zoom: <span id="zoom-plus" style="cursor:pointer;font-weight:bold;">+</span>  /  ' +
+		'<a href=https://discord.io/italianempire target="_blank">Discord' +
+        '</a> | <span id="hide-map" style="cursor:pointer;color:white"> Oscurare' +
+        '</span> | <span id="follow-mouse" style="cursor:pointer;">Seguire il mouse' +
+        '</span>| Zoom: <span id="zoom-plus" style="cursor:pointer;font-weight:bold;">+</span> / ' +
         '<span id="zoom-minus" style="cursor:pointer;font-weight:bold;">-</span>' +
         '</div>' +
         '</div>';
@@ -158,7 +157,7 @@ window.addEventListener('load', function () {
         document.getElementById("minimap-box").style.display = "none";
         document.getElementById("minimap-config").style.display = "none";
         document.getElementById("minimap-text").style.display = "block";
-        document.getElementById("minimap-text").innerHTML = "Espandere la mappa";
+        document.getElementById("minimap-text").innerHTML = "Mostra la minimapa";
         document.getElementById("minimap-text").style.cursor = "pointer";
     };
     document.getElementById("minimap-text").onclick = function () {
@@ -190,13 +189,13 @@ window.addEventListener('load', function () {
     document.getElementById("follow-mouse").onclick = function () {
         toggle_follow = !toggle_follow;
         if (toggle_follow) {
-            this.innerHTML = "Seguire il mouse";
+            this.innerHTML = "Seguire lo schermo";
             loadTemplates();
             x_window = x;
             y_window = y;
             drawCursor();
         } else {
-            this.innerHTML = "Seguire lo schermo";
+            this.innerHTML = "Seguire il mouse";
             getCenter();
         }
     };
@@ -222,8 +221,9 @@ window.addEventListener('load', function () {
                 x_window = x;
                 y_window = y;
             } else {
-                drawCursor();
+				getCenter();
             }
+			drawCursor();
             loadTemplates();
         }
     }, false);
@@ -329,8 +329,10 @@ function loadTemplates() {
         var temp_y = parseInt(template_list[template]["y"]) * 1;
         var temp_xr = parseInt(template_list[template]["x"]) + parseInt(template_list[template]["width"]);
         var temp_yb = parseInt(template_list[template]["y"]) + parseInt(template_list[template]["height"]);
-        // if (temp_xr <= x_left || temp_yb <= y_top || temp_x >= x_right || temp_y >= y_bottom)
-        //    continue
+
+         if (temp_xr <= x_left || temp_yb <= y_top || temp_x >= x_right || temp_y >= y_bottom)
+            continue
+		console.log(x_window + ", " + y_window);
         if (!x_window.between(temp_x, temp_xr) && !y_window.between(temp_y, temp_yb))
             continue
         console.log("Template " + template + " is in range!");
@@ -341,7 +343,7 @@ function loadTemplates() {
         if (zooming_in == false && zooming_out == false) {
             document.getElementById("minimap-box").style.display = "none";
             document.getElementById("minimap-text").style.display = "block";
-            document.getElementById("minimap-text").innerHTML = "Non c'è niente qui.";
+            document.getElementById("minimap-text").innerHTML = "Non c'è niente qui";
         }
     } else {
         document.getElementById("minimap-box").style.display = "block";
@@ -437,8 +439,8 @@ function drawCursor() {
 
 function getCenter() {
     var url = window.location.href;
-    x_window = url.replace(re, '$2');
-    y_window = url.replace(re, '$3');
+    x_window = +url.split("?p=")[1].split(",")[0];
+    y_window = ++url.split("?p=")[1].split(",")[1];
     if (x_window == url || y_window == url) {
         x_window = 0;
         y_window = 0;
