@@ -27,6 +27,13 @@
     "width": 440,
     "height": 384
    },
+  "Pizza": {
+    "name": "Pizza.png",
+    "x": 100,
+    "y": -709,
+    "width": 147,
+    "height": 164
+   },
   "PowerGab76": {
     "name": "PowerGab76.png",
     "x": 303,
