@@ -13,6 +13,13 @@
     "width": 1250,
     "height": 744
    },
+  "DcFlag": {
+    "name": "DcFlag.png",
+    "x": -873,
+    "y": 513,
+    "width": 199,
+    "height": 133
+   },
   "ItalianEmpire": {
     "name": "ItalianEmpire.png",
     "x": 691,
