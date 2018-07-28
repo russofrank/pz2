@@ -111,6 +111,13 @@
     "width": 318,
     "height": 178
    },
+  "GreenandCyan": {
+    "name": "GreenandCyan.png",
+    "x": 663,
+    "y": 547,
+    "width": 200,
+    "height": 131
+   },
   "USAFlag": {
     "name": "USAFlag.png",
     "x": -600,
