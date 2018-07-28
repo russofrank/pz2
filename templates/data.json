@@ -111,6 +111,13 @@
     "width": 318,
     "height": 178
    },
+  "Norway": {
+    "name": "Norway.png",
+    "x": 401,
+    "y": 301,
+    "width": 220,
+    "height": 160
+   },
   "GreenandCyan": {
     "name": "GreenandCyan.png",
     "x": 663,
