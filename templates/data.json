@@ -133,12 +133,12 @@
     "height": 133
    },
   "DC1": {
-    "name": "DcFlag.png",
+    "name": "DC1.png",
     "x": -373,
     "y": -590,
     "width": 91,
     "height": 140
-   },
+   }
   "ObsidianArts": {
     "name": "ObsidianArts.png",
     "x": 1820,
