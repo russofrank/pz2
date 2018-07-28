@@ -13,13 +13,6 @@
     "width": 1250,
     "height": 744
    },
-  "DcFlag": {
-    "name": "DcFlag.png",
-    "x": -873,
-    "y": 513,
-    "width": 199,
-    "height": 133
-   },
   "ItalianEmpire": {
     "name": "ItalianEmpire.png",
     "x": 691,
@@ -131,6 +124,20 @@
     "y": -385,
     "width": 258,
     "height": 178
+   },
+  "DcFlag": {
+    "name": "DcFlag.png",
+    "x": -873,
+    "y": 513,
+    "width": 199,
+    "height": 133
+   },
+  "DC1": {
+    "name": "DcFlag.png",
+    "x": -373,
+    "y": -590,
+    "width": 91,
+    "height": 140
    },
   "ObsidianArts": {
     "name": "ObsidianArts.png",
