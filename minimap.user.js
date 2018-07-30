@@ -79,7 +79,7 @@ Number.prototype.between = function(a, b) {
   return this > min && this < max;
 };
 
-window.baseTepmlateUrl = 'https://raw.githubusercontent.com/russofrank/pz2/master';
+window.baseTepmlateUrl = 'https://github.com/russofrank/pz2/blob/master/templates/data.json';
 
 window.addEventListener('load', function () {
     //Regular Expression to get coordinates from cursor
