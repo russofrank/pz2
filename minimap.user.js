@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Zone MiniMap
+// @name         PZ MiniMap
 // @namespace    http://tampermonkey.net/
 // @version      2.0
-// @description  Zone MiniMap
+// @description  PZ MiniMap
 // @author       
 // @match        https://pixelzone.io/*
 // @match        http://pixelzone.io/*
