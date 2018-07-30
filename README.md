@@ -1,2 +1,2 @@
-# Italy Zone Minimap
-Minimapa da italia - pixelzone.io
+# Zone Minimap
+Minimapa - pixelzone.io
